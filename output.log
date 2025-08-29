@@ -1,0 +1,548 @@
+username1@developmentmach:~/cow-test$ forge test -vv
+[⠊] Compiling...
+[⠆] Compiling 21 files with Solc 0.8.30
+[⠔] Solc 0.8.30 finished in 1.24s
+Compiler run successful with warnings:
+Warning (3628): This contract has a payable fallback function, but no receive ether function. Consider adding a receive ether function.
+  --> test/ChallengeFallback.t..sol:50:1:
+   |
+50 | contract ResponderTrue is ICapture {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+Note: The payable fallback function is defined here.
+  --> test/ChallengeFallback.t..sol:54:5:
+   |
+54 |     fallback(bytes calldata data) external payable returns (bytes memory) {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (3628): This contract has a payable fallback function, but no receive ether function. Consider adding a receive ether function.
+  --> test/ChallengeFallback.t..sol:75:1:
+   |
+75 | contract ResponderFalse is ICapture {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+Note: The payable fallback function is defined here.
+  --> test/ChallengeFallback.t..sol:76:5:
+   |
+76 |     fallback(bytes calldata data) external payable returns (bytes memory) {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (3628): This contract has a payable fallback function, but no receive ether function. Consider adding a receive ether function.
+  --> test/ChallengeFallback.t..sol:95:1:
+   |
+95 | contract ResponderNonCanonical is ICapture {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+Note: The payable fallback function is defined here.
+  --> test/ChallengeFallback.t..sol:96:5:
+   |
+96 |     fallback(bytes calldata data) external payable returns (bytes memory) {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (3628): This contract has a payable fallback function, but no receive ether function. Consider adding a receive ether function.
+   --> test/ChallengeFallback.t..sol:115:1:
+    |
+115 | contract ResponderShort is ICapture {
+    | ^ (Relevant source part starts here and spans across multiple lines).
+Note: The payable fallback function is defined here.
+   --> test/ChallengeFallback.t..sol:116:5:
+    |
+116 |     fallback(bytes calldata data) external payable returns (bytes memory) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (3628): This contract has a payable fallback function, but no receive ether function. Consider adding a receive ether function.
+   --> test/ChallengeFallback.t..sol:136:1:
+    |
+136 | contract ResponderRevert is ICapture {
+    | ^ (Relevant source part starts here and spans across multiple lines).
+Note: The payable fallback function is defined here.
+   --> test/ChallengeFallback.t..sol:137:5:
+    |
+137 |     fallback(bytes calldata) external payable returns (bytes memory) {
+    |     ^ (Relevant source part starts here and spans across multiple lines).
+
+Warning (2072): Unused local variable.
+  --> test/ChallengeFallback.t..sol:38:9:
+   |
+38 |         bytes32 raw;
+   |         ^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/ChallengeFallback.t..sol:76:14:
+   |
+76 |     fallback(bytes calldata data) external payable returns (bytes memory) {
+   |              ^^^^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+  --> test/ChallengeFallback.t..sol:96:14:
+   |
+96 |     fallback(bytes calldata data) external payable returns (bytes memory) {
+   |              ^^^^^^^^^^^^^^^^^^^
+
+Warning (5667): Unused function parameter. Remove or comment out the variable name to silence this warning.
+   --> test/ChallengeFallback.t..sol:116:14:
+    |
+116 |     fallback(bytes calldata data) external payable returns (bytes memory) {
+    |              ^^^^^^^^^^^^^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> test/ChallengeFallback.t..sol:197:10:
+    |
+197 |         (bool ok, ) = challenge.call("");
+    |          ^^^^^^^
+
+Warning (2072): Unused local variable.
+   --> test/ChallengeFallback.t..sol:287:10:
+    |
+287 |         (bool ok, ) = challenge.call("");
+    |          ^^^^^^^
+
+Warning (2018): Function state mutability can be restricted to pure
+  --> test/ChallengeFallback.t..sol:37:5:
+   |
+37 |     function slot0Address(address a) internal view returns (address out) {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Ran 10 tests for test/ChallengeFallback.t..sol:ChallengeFallbackTest
+[PASS] test_AnotherResponder_CanRecapture() (gas: 701532)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[PASS] test_EOA_CannotCapture() (gas: 18350)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[PASS] test_EOA_CannotOverwrite_AfterCapture() (gas: 373203)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[PASS] test_FlagMatchesRawSlot() (gas: 366442)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[FAIL: Error != expected error: target reverted != Wrong answer] test_ResponderFalse_WrongAnswer() (gas: 282805)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[PASS] test_ResponderNonCanonical_Reverts() (gas: 287429)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[FAIL: Error != expected error: target reverted != Call failed] test_ResponderRevert_CallFailed() (gas: 246279)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[PASS] test_ResponderShort_Reverts() (gas: 281526)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[PASS] test_ResponderTrue_Captures() (gas: 366559)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[PASS] test_ResponderTrue_Captures_WithValue() (gas: 378771)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+Suite result: FAILED. 8 passed; 2 failed; 0 skipped; finished in 91.54ms (14.98ms CPU time)
+
+Ran 1 test suite in 264.68ms (91.54ms CPU time): 8 tests passed, 2 failed, 0 skipped (10 total tests)
+
+Failing tests:
+Encountered 2 failing tests in test/ChallengeFallback.t..sol:ChallengeFallbackTest
+[FAIL: Error != expected error: target reverted != Wrong answer] test_ResponderFalse_WrongAnswer() (gas: 282805)
+[FAIL: Error != expected error: target reverted != Call failed] test_ResponderRevert_CallFailed() (gas: 246279)
+
+Encountered a total of 2 failing tests, 8 tests succeeded
+username1@developmentmach:~/cow-test$ forge test -vv
+[⠒] Compiling...
+[⠆] Compiling 1 files with Solc 0.8.30
+[⠰] Solc 0.8.30 finished in 3.36s
+Compiler run successful!
+
+Ran 10 tests for test/ChallengeFallback.t..sol:ChallengeFallbackTest
+[PASS] test_AnotherResponder_CanRecapture() (gas: 701532)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[PASS] test_EOA_CannotCapture() (gas: 18350)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[PASS] test_EOA_CannotOverwrite_AfterCapture() (gas: 373203)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[PASS] test_FlagMatchesRawSlot() (gas: 366442)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[FAIL: Error != expected error: target reverted != Wrong answer] test_ResponderFalse_WrongAnswer() (gas: 282805)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[PASS] test_ResponderNonCanonical_Reverts() (gas: 287429)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[FAIL: Error != expected error: target reverted != Call failed] test_ResponderRevert_CallFailed() (gas: 246279)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[PASS] test_ResponderShort_Reverts() (gas: 281526)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[PASS] test_ResponderTrue_Captures() (gas: 366559)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+[PASS] test_ResponderTrue_Captures_WithValue() (gas: 378771)
+Logs:
+  Challenge deployed at 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+Suite result: FAILED. 8 passed; 2 failed; 0 skipped; finished in 14.16ms (2.11ms CPU time)
+
+Ran 3 tests for test/ForceFlagNonZero.t.sol:ForceFlagNonZeroTest
+[PASS] test_ForceFlagToContract() (gas: 7017)
+[PASS] test_ForceFlagToEOA() (gas: 10519)
+[PASS] test_ForceFlagToTxOrigin() (gas: 7017)
+Suite result: ok. 3 passed; 0 failed; 0 skipped; finished in 16.49ms (17.22ms CPU time)
+
+Ran 2 test suites in 80.49ms (30.66ms CPU time): 11 tests passed, 2 failed, 0 skipped (13 total tests)
+
+Failing tests:
+Encountered 2 failing tests in test/ChallengeFallback.t..sol:ChallengeFallbackTest
+[FAIL: Error != expected error: target reverted != Wrong answer] test_ResponderFalse_WrongAnswer() (gas: 282805)
+[FAIL: Error != expected error: target reverted != Call failed] test_ResponderRevert_CallFailed() (gas: 246279)
+
+Encountered a total of 2 failing tests, 11 tests succeeded
+username1@developmentmach:~/cow-test$ export ETH_RPC_URL="https://eth-sepolia.g.alchemy.com/v2/jqWDdnk_js3c7ZSDY5Pn4UTBJ2OYQMuD"
+username1@developmentmach:~/cow-test$ export ADDR=0x5c216230Cc5C078bc4dC95C0E1BE6cD82131a4E7
+username1@developmentmach:~/cow-test$ forge test --fork-url "$ETH_RPC_URL" --match-test test_CaptureOnFork -vvv
+[⠊] Compiling...
+[⠆] Compiling 1 files with Solc 0.8.30
+[⠔] Solc 0.8.30 finished in 2.41s
+Compiler run successful with warnings:
+Warning (3628): This contract has a payable fallback function, but no receive ether function. Consider adding a receive ether function.
+  --> test/SepoliaTest.t.sol:11:1:
+   |
+11 | contract ResponderTrue {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+Note: The payable fallback function is defined here.
+  --> test/SepoliaTest.t.sol:12:5:
+   |
+12 |     fallback(bytes calldata) external payable returns (bytes memory out) {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Ran 1 test for test/SepoliaTest.t.sol:SepoliaCaptureTest
+[FAIL: EvmError: Revert] test_CaptureOnFork() (gas: 5220)
+Traces:
+  [5220] SepoliaCaptureTest::test_CaptureOnFork()
+    ├─ [141] 0x5c216230Cc5C078bc4dC95C0E1BE6cD82131a4E7::flag() [staticcall]
+    │   └─ ← [Revert] EvmError: Revert
+    └─ ← [Revert] EvmError: Revert
+
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 707.83ms (44.10ms CPU time)
+
+Ran 1 test suite in 910.70ms (707.83ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/SepoliaTest.t.sol:SepoliaCaptureTest
+[FAIL: EvmError: Revert] test_CaptureOnFork() (gas: 5220)
+
+Encountered a total of 1 failing tests, 0 tests succeeded
+username1@developmentmach:~/cow-test$ forge test --fork-url "$ETH_RPC_URL" --match-test test_CaptureOnFork -vvvvv
+[⠒] Compiling...
+No files changed, compilation skipped
+
+Ran 1 test for test/SepoliaTest.t.sol:SepoliaCaptureTest
+[FAIL: EvmError: Revert] test_CaptureOnFork() (gas: 5220)
+Traces:
+  [259336] SepoliaCaptureTest::setUp()
+    ├─ [0] VM::envString("ETH_RPC_URL") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::createSelectFork("<rpc url>")
+    │   └─ ← [Return] 1
+    ├─ [0] VM::envAddress("ADDR") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [194036] → new ResponderTrue@0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+    │   └─ ← [Return] 969 bytes of code
+    └─ ← [Stop]
+
+  [5220] SepoliaCaptureTest::test_CaptureOnFork()
+    ├─ [141] 0x5c216230Cc5C078bc4dC95C0E1BE6cD82131a4E7::flag() [staticcall]
+    │   └─ ← [Revert] EvmError: Revert
+    └─ ← [Revert] EvmError: Revert
+
+Suite result: FAILED. 0 passed; 1 failed; 0 skipped; finished in 576.72ms (54.13ms CPU time)
+
+Ran 1 test suite in 730.24ms (576.72ms CPU time): 0 tests passed, 1 failed, 0 skipped (1 total tests)
+
+Failing tests:
+Encountered 1 failing test in test/SepoliaTest.t.sol:SepoliaCaptureTest
+[FAIL: EvmError: Revert] test_CaptureOnFork() (gas: 5220)
+
+Encountered a total of 1 failing tests, 0 tests succeeded
+username1@developmentmach:~/cow-test$ cast codesize 0x5c216230Cc5C078bc4dC95C0E1BE6cD82131a4E7 --rpc-url "$ETH_RPC_URL"
+837
+username1@developmentmach:~/cow-test$ export BYTECODE=0x6080604052348015600e575f5ffd5b5061046d8061001c5f395ff3fe608060405260043610610021575f3560e01c8063890eba68146101e557610022565b5b5f5f3373ffffffffffffffffffffffffffffffffffffffff166040516024016040516020818303038152906040527f0e8c21a3000000000000000000000000000000000000000000000000000000007bffffffffffffffffffffffffffffffffffffffffffffffffffffffff19166020820180517bffffffffffffffffffffffffffffffffffffffffffffffffffffffff83818316178352505050506040516100cb9190610285565b5f604051808303815f865af19150503d805f8114610104576040519150601f19603f3d011682016040523d82523d5f602084013e610109565b606091505b50915091508161014e576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401610145906102f5565b60405180910390fd5b5f81806020019051810190610163919061034c565b9050806101a5576040517f08c379a000000000000000000000000000000000000000000000000000000000815260040161019c906103c1565b60405180910390fd5b335f5f6101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055005b3480156101f0575f5ffd5b506101f961020f565b604051610206919061041e565b60405180910390f35b5f5f9054906101000a900473ffffffffffffffffffffffffffffffffffffffff1681565b5f81519050919050565b5f81905092915050565b8281835e5f83830152505050565b5f61025f82610233565b610269818561023d565b9350610279818560208601610247565b80840191505092915050565b5f6102908284610255565b915081905092915050565b5f82825260208201905092915050565b7f43616c6c206661696c65640000000000000000000000000000000000000000005f82015250565b5f6102df600b8361029b565b91506102ea826102ab565b602082019050919050565b5f6020820190508181035f83015261030c816102d3565b9050919050565b5f5ffd5b5f8115159050919050565b61032b81610317565b8114610335575f5ffd5b50565b5f8151905061034681610322565b92915050565b5f6020828403121561036157610360610313565b5b5f61036e84828501610338565b91505092915050565b7f57726f6e6720616e7377657200000000000000000000000000000000000000005f82015250565b5f6103ab600c8361029b565b91506103b682610377565b602082019050919050565b5f6020820190508181035f8301526103d88161039f565b9050919050565b5f73ffffffffffffffffffffffffffffffffffffffff82169050919050565b5f610408826103df565b9050919050565b610418816103fe565b82525050565b5f6020820190506104315f83018461040f565b9291505056fea264697066735822122071cd63f7255e3ade7ae5f4db4492fdff08135bd0d2ac354f6c70b45b8942ddf364736f6c634300081c0033
+username1@developmentmach:~/cow-test$ export PRIVATE_KEY=c405767c1403dc201855946472e8f3591f93fb2017843a7fb3b4ac81e28c983d
+username1@developmentmach:~/cow-test$ OUT=$(cast send --rpc-url "$ETH_RPC_URL" --private-key "$PRIVATE_KEY" --create "$BYTECODE")
+username1@developmentmach:~/cow-test$ export ADDR=$(echo "$OUT" | awk '/contractAddress/ {print $2}')
+username1@developmentmach:~/cow-test$ cast codesize "$ADDR" --rpc-url "$ETH_RPC_URL" 
+1133
+username1@developmentmach:~/cow-test$ forge test --fork-url "$ETH_RPC_URL" --match-test test_CaptureOnFork -vvv
+[⠊] Compiling...
+No files changed, compilation skipped
+
+Ran 1 test for test/SepoliaTest.t.sol:SepoliaCaptureTest
+[PASS] test_CaptureOnFork() (gas: 38472)
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 601.47ms (82.96ms CPU time)
+
+Ran 1 test suite in 757.06ms (601.47ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)
+username1@developmentmach:~/cow-test$ forge test --fork-url "$ETH_RPC_URL" --match-test test_CaptureOnFork -vvv
+Compiler run failed:
+Error (7576): Undeclared identifier.
+  --> test/SepoliaTest.t.sol:43:42:
+   |
+43 |         emit log_named_address("flag()", IFlag(ADDR).flag());
+   |                                          ^^^^^
+
+Error (7576): Undeclared identifier.
+  --> test/SepoliaTest.t.sol:43:48:
+   |
+43 |         emit log_named_address("flag()", IFlag(ADDR).flag());
+   |                                                ^^^^
+
+Error: Compilation failed
+username1@developmentmach:~/cow-test$ forge test --fork-url "$ETH_RPC_URL" --match-test test_CaptureOnFork -vvvvv
+[⠒] Compiling...
+[⠢] Files to compile:
+- test/SepoliaTest.t.sol
+[⠰] Compiling 1 files with Solc 0.8.30
+[⠔] Solc 0.8.30 finished in 2.19s
+Compiler run successful with warnings:
+Warning (3628): This contract has a payable fallback function, but no receive ether function. Consider adding a receive ether function.
+  --> test/SepoliaTest.t.sol:11:1:
+   |
+11 | contract ResponderTrue {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+Note: The payable fallback function is defined here.
+  --> test/SepoliaTest.t.sol:12:5:
+   |
+12 |     fallback(bytes calldata) external payable returns (bytes memory out) {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Ran 1 test for test/SepoliaTest.t.sol:SepoliaCaptureTest
+[PASS] test_CaptureOnFork() (gas: 39475)
+Logs:
+  flag(): 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+Traces:
+  [260258] SepoliaCaptureTest::setUp()
+    ├─ [0] VM::envString("ETH_RPC_URL") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::createSelectFork("<rpc url>")
+    │   └─ ← [Return] 1
+    ├─ [0] VM::envAddress("ADDR") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [194036] → new ResponderTrue@0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+    │   └─ ← [Return] 969 bytes of code
+    ├─ [0] VM::deal(ResponderTrue: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f], 10000000000000000 [1e16])
+    │   └─ ← [Return]
+    └─ ← [Stop]
+
+  [39475] SepoliaCaptureTest::test_CaptureOnFork()
+    ├─ [2485] 0x6b27209c24Ad55819719288fa51aDa66732633f7::flag() [staticcall]
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000
+    ├─ [22406] ResponderTrue::go(0x6b27209c24Ad55819719288fa51aDa66732633f7)
+    │   ├─ [21581] 0x6b27209c24Ad55819719288fa51aDa66732633f7::fallback()
+    │   │   ├─ [387] ResponderTrue::fallback(0x0e8c21a3)
+    │   │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000000000000000001
+    │   │   ├─  storage changes:
+    │   │   │   @ 0: 0 → 0x0000000000000000000000005615deb798bb3e4dfa0139dfa1b3d433cc23b72f
+    │   │   └─ ← [Stop]
+    │   └─ ← [Stop]
+    ├─ [485] 0x6b27209c24Ad55819719288fa51aDa66732633f7::flag() [staticcall]
+    │   └─ ← [Return] ResponderTrue: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]
+    ├─ emit log_named_address(key: "flag()", val: ResponderTrue: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f])
+    └─ ← [Stop]
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 648.85ms (97.13ms CPU time)
+
+Ran 1 test suite in 1.37s (648.85ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)
+username1@developmentmach:~/cow-test$ forge test --fork-url "$ETH_RPC_URL" --match-test test_CaptureOnFork -vvvvv
+[⠒] Compiling...
+No files changed, compilation skipped
+
+Ran 1 test for test/SepoliaTest.t.sol:SepoliaCaptureTest
+[PASS] test_CaptureOnFork() (gas: 39475)
+Logs:
+  flag(): 0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+
+Traces:
+  [260258] SepoliaCaptureTest::setUp()
+    ├─ [0] VM::envString("ETH_RPC_URL") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::createSelectFork("<rpc url>")
+    │   └─ ← [Return] 1
+    ├─ [0] VM::envAddress("ADDR") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [194036] → new ResponderTrue@0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+    │   └─ ← [Return] 969 bytes of code
+    ├─ [0] VM::deal(ResponderTrue: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f], 10000000000000000 [1e16])
+    │   └─ ← [Return]
+    └─ ← [Stop]
+
+  [39475] SepoliaCaptureTest::test_CaptureOnFork()
+    ├─ [2485] 0x6b27209c24Ad55819719288fa51aDa66732633f7::flag() [staticcall]
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000
+    ├─ [22406] ResponderTrue::go(0x6b27209c24Ad55819719288fa51aDa66732633f7)
+    │   ├─ [21581] 0x6b27209c24Ad55819719288fa51aDa66732633f7::fallback()
+    │   │   ├─ [387] ResponderTrue::fallback(0x0e8c21a3)
+    │   │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000000000000000001
+    │   │   ├─  storage changes:
+    │   │   │   @ 0: 0 → 0x0000000000000000000000005615deb798bb3e4dfa0139dfa1b3d433cc23b72f
+    │   │   └─ ← [Stop]
+    │   └─ ← [Stop]
+    ├─ [485] 0x6b27209c24Ad55819719288fa51aDa66732633f7::flag() [staticcall]
+    │   └─ ← [Return] ResponderTrue: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f]
+    ├─ emit log_named_address(key: "flag()", val: ResponderTrue: [0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f])
+    └─ ← [Stop]
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 561.32ms (89.26ms CPU time)
+
+Ran 1 test suite in 722.74ms (561.32ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)
+username1@developmentmach:~/cow-test$ forge test test/EOAFlagCaptureTest.t.sol -vvvvv
+[⠊] Compiling...
+[⠒] Files to compile:
+- test/EOAFlagCaptureTest.t.sol
+[⠊] Compiling 1 files with Solc 0.8.30
+[⠒] Solc 0.8.30 finished in 2.92s
+Compiler run successful with warnings:
+Warning (3628): This contract has a payable fallback function, but no receive ether function. Consider adding a receive ether function.
+  --> test/EOAFlagCaptureTest.t.sol:14:1:
+   |
+14 | contract ChallengeLike {
+   | ^ (Relevant source part starts here and spans across multiple lines).
+Note: The payable fallback function is defined here.
+  --> test/EOAFlagCaptureTest.t.sol:17:5:
+   |
+17 |     fallback() external payable {
+   |     ^ (Relevant source part starts here and spans across multiple lines).
+
+
+Ran 2 tests for test/EOAFlagCaptureTest.t.sol:EOAFlagCaptureTest
+[PASS] test_EOA_CapturesFlag_Locally() (gas: 266801)
+Traces:
+  [32383] EOAFlagCaptureTest::setUp()
+    ├─ [0] VM::envBytes32("PRIVATE_KEY") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB
+    ├─ [0] VM::deal(0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB, 1000000000000000000 [1e18])
+    │   └─ ← [Return]
+    └─ ← [Stop]
+
+  [266801] EOAFlagCaptureTest::test_EOA_CapturesFlag_Locally()
+    ├─ [202443] → new ChallengeLike@0x5615dEB798BB3E4dFa0139dFa1b3D433Cc23b72f
+    │   └─ ← [Return] 1011 bytes of code
+    ├─ [0] VM::mockCall(0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB, 0x0e8c21a3, 0x0000000000000000000000000000000000000000000000000000000000000001)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB)
+    │   └─ ← [Return]
+    ├─ [23017] ChallengeLike::fallback()
+    │   ├─ [0] 0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB::0e8c21a3()
+    │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000000000000000001
+    │   ├─  storage changes:
+    │   │   @ 0: 0 → 0x000000000000000000000000d8cf0c37fa05afc30eb723ec5155cd3ef92d3ccb
+    │   └─ ← [Stop]
+    ├─ [485] ChallengeLike::flag() [staticcall]
+    │   └─ ← [Return] 0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB
+    └─ ← [Stop]
+
+[PASS] test_EOA_CapturesFlag_OnFork() (gas: 39834)
+Traces:
+  [32383] EOAFlagCaptureTest::setUp()
+    ├─ [0] VM::envBytes32("PRIVATE_KEY") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB
+    ├─ [0] VM::deal(0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB, 1000000000000000000 [1e18])
+    │   └─ ← [Return]
+    └─ ← [Stop]
+
+  [39834] EOAFlagCaptureTest::test_EOA_CapturesFlag_OnFork()
+    ├─ [0] VM::envString("ETH_RPC_URL") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::createSelectFork("<rpc url>")
+    │   └─ ← [Return] 0
+    ├─ [0] VM::envAddress("ADDR") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [2485] 0x6b27209c24Ad55819719288fa51aDa66732633f7::flag() [staticcall]
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000
+    ├─ [0] VM::mockCall(0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB, 0x0e8c21a3, 0x0000000000000000000000000000000000000000000000000000000000000001)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB)
+    │   └─ ← [Return]
+    ├─ [21194] 0x6b27209c24Ad55819719288fa51aDa66732633f7::fallback()
+    │   ├─ [0] 0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB::0e8c21a3()
+    │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000000000000000001
+    │   ├─  storage changes:
+    │   │   @ 0: 0 → 0x000000000000000000000000d8cf0c37fa05afc30eb723ec5155cd3ef92d3ccb
+    │   └─ ← [Stop]
+    ├─ [485] 0x6b27209c24Ad55819719288fa51aDa66732633f7::flag() [staticcall]
+    │   └─ ← [Return] 0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB
+    ├─ [485] 0x6b27209c24Ad55819719288fa51aDa66732633f7::flag() [staticcall]
+    │   └─ ← [Return] 0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB
+    └─ ← [Stop]
+
+Suite result: ok. 2 passed; 0 failed; 0 skipped; finished in 519.08ms (500.24ms CPU time)
+
+Ran 1 test suite in 606.87ms (519.08ms CPU time): 2 tests passed, 0 failed, 0 skipped (2 total tests)
+username1@developmentmach:~/cow-test$ forge test --fork-url "$ETH_RPC_URL" --match-test test_EOA_CapturesFlag_OnFork -vvvvv
+[⠊] Compiling...
+No files changed, compilation skipped
+
+Ran 1 test for test/EOAFlagCaptureTest.t.sol:EOAFlagCaptureTest
+[PASS] test_EOA_CapturesFlag_OnFork() (gas: 39834)
+Traces:
+  [32383] EOAFlagCaptureTest::setUp()
+    ├─ [0] VM::envBytes32("PRIVATE_KEY") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::addr(<pk>) [staticcall]
+    │   └─ ← [Return] 0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB
+    ├─ [0] VM::deal(0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB, 1000000000000000000 [1e18])
+    │   └─ ← [Return]
+    └─ ← [Stop]
+
+  [39834] EOAFlagCaptureTest::test_EOA_CapturesFlag_OnFork()
+    ├─ [0] VM::envString("ETH_RPC_URL") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [0] VM::createSelectFork("<rpc url>")
+    │   └─ ← [Return] 1
+    ├─ [0] VM::envAddress("ADDR") [staticcall]
+    │   └─ ← [Return] <env var value>
+    ├─ [2485] 0x6b27209c24Ad55819719288fa51aDa66732633f7::flag() [staticcall]
+    │   └─ ← [Return] 0x0000000000000000000000000000000000000000
+    ├─ [0] VM::mockCall(0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB, 0x0e8c21a3, 0x0000000000000000000000000000000000000000000000000000000000000001)
+    │   └─ ← [Return]
+    ├─ [0] VM::prank(0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB)
+    │   └─ ← [Return]
+    ├─ [21194] 0x6b27209c24Ad55819719288fa51aDa66732633f7::fallback()
+    │   ├─ [0] 0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB::0e8c21a3()
+    │   │   └─ ← [Return] 0x0000000000000000000000000000000000000000000000000000000000000001
+    │   ├─  storage changes:
+    │   │   @ 0: 0 → 0x000000000000000000000000d8cf0c37fa05afc30eb723ec5155cd3ef92d3ccb
+    │   └─ ← [Stop]
+    ├─ [485] 0x6b27209c24Ad55819719288fa51aDa66732633f7::flag() [staticcall]
+    │   └─ ← [Return] 0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB
+    ├─ [485] 0x6b27209c24Ad55819719288fa51aDa66732633f7::flag() [staticcall]
+    │   └─ ← [Return] 0xD8CF0c37FA05afC30EB723Ec5155Cd3ef92d3cCB
+    └─ ← [Stop]
+
+Suite result: ok. 1 passed; 0 failed; 0 skipped; finished in 664.13ms (290.05ms CPU time)
+
+Ran 1 test suite in 842.27ms (664.13ms CPU time): 1 tests passed, 0 failed, 0 skipped (1 total tests)
+username1@developmentmach:~/cow-test$ 
